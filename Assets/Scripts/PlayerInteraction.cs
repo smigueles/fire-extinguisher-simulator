@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    public float interactDistance = 5f;
+    public float interactDistance = 7f;
+    public Transform holdPoint;
 
     void Update()
     {
@@ -17,11 +18,6 @@ public class PlayerInteraction : MonoBehaviour
 
         RaycastHit hit;
 
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            Debug.Log("E presionada");
-        }
-
         if (Physics.Raycast(ray, out hit, interactDistance))
         {
             Debug.Log("Golpeando: " + hit.collider.name);
@@ -29,6 +25,25 @@ public class PlayerInteraction : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 Debug.Log("Interactuaste con: " + hit.collider.name);
+                FireExtinguisher extinguisher =
+                hit.collider.GetComponent<FireExtinguisher>();
+                Debug.Log("Extintor:" + extinguisher.name);
+                if (extinguisher != null)
+                {
+                    extinguisher.transform.SetParent(holdPoint);
+
+                    extinguisher.transform.localPosition =
+                        Vector3.zero;
+
+                    extinguisher.transform.localRotation =
+                        Quaternion.identity;
+
+                    extinguisher.transform.localPosition =
+                        new Vector3(0.3f, -3.05f, 0.5f);
+
+                    extinguisher.transform.localRotation =
+                        Quaternion.Euler(-90f, 90f, 180f);
+                }
             }
         }
     }

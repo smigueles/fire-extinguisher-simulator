@@ -495,10 +495,11 @@ Transform:
   m_GameObject: {fileID: 556617346}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3, y: 4.5, z: 0}
+  m_LocalPosition: {x: -0.2, y: 4.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 648288691}
   m_Father: {fileID: 1769861510}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &556617348
@@ -618,6 +619,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerBody: {fileID: 1769861510}
   mouseSensitivity: 200
+--- !u!1 &648288690
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 648288691}
+  m_Layer: 0
+  m_Name: HoldPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &648288691
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648288690}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.3, y: -0.2, z: 0.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 556617347}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,6 +770,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0b0767d33f0c2ba478e09caef08010b8, type: 3}
       propertyPath: m_Name
       value: fire-extinguisher
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0b0767d33f0c2ba478e09caef08010b8, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1010,7 +1046,7 @@ Transform:
   m_GameObject: {fileID: 1769861508}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 14.29, y: -4.34, z: -4.86}
+  m_LocalPosition: {x: 14.29, y: -4.34, z: -4.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1043,7 +1079,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa73e17db693054408abb15b594fb484, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactDistance: 3
+  interactDistance: 5
+  holdPoint: {fileID: 648288691}
 --- !u!1 &1770950046 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5088309380072154955, guid: fde6668629182ff4fb50367fddfce6f0, type: 3}
