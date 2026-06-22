@@ -20,7 +20,6 @@ public class PlayerInteraction : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, interactDistance))
         {
-            Debug.Log("Golpeando: " + hit.collider.name);
 
             if (Input.GetKeyDown(KeyCode.E))
             {

@@ -56,6 +56,7 @@
     <Compile Include="Assets\N2Studio\Shaders\Nova\Runtime\Core\Scripts\DistortionContextItem_RenderGraph.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\N2Studio\Shaders\Nova\Runtime\Core\Scripts\DeprecationMessage.cs" />
+    <Compile Include="Assets\Scripts\FireController.cs" />
     <Compile Include="Assets\Scripts\FireExtinguisher.cs" />
     <Compile Include="Assets\Scripts\PlayerInteraction.cs" />
     <Compile Include="Assets\N2Studio\Shaders\Nova\Runtime\Core\Scripts\DistortedUvBufferPass_RenderGraph.cs" />
