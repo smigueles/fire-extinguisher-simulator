@@ -1446,9 +1446,33 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -5143024209996182995, guid: fde6668629182ff4fb50367fddfce6f0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5143024209996182995, guid: fde6668629182ff4fb50367fddfce6f0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0009
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: fde6668629182ff4fb50367fddfce6f0, type: 3}
       propertyPath: m_Name
       value: Misaladespera6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5379272573965506377, guid: fde6668629182ff4fb50367fddfce6f0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 100.880005
+      objectReference: {fileID: 0}
+    - target: {fileID: 5379272573965506377, guid: fde6668629182ff4fb50367fddfce6f0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 100.880005
+      objectReference: {fileID: 0}
+    - target: {fileID: 5379272573965506377, guid: fde6668629182ff4fb50367fddfce6f0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 100.880005
+      objectReference: {fileID: 0}
+    - target: {fileID: 5379272573965506377, guid: fde6668629182ff4fb50367fddfce6f0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.734
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
