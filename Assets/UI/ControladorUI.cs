@@ -1,23 +1,24 @@
 using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEngine.SceneManagement;
+using System.Collections; // <-- Necesario para usar Corrutinas (IEnumerator)
 
 public class ControladorUI : MonoBehaviour
 {
     [Header("Configuración de Escena")]
-    [SerializeField] private GameObject globalVolumeBlur;
+    //[SerializeField] private GameObject globalVolumeBlur;
     [SerializeField] private PlayerMovement scriptPlayerMovement;
     [SerializeField] private MouseLook scriptMouseLook;
     [SerializeField] private GameObject camaraMenu;
     [SerializeField] private GameObject camaraJugador;
     [SerializeField] private GameObject Fire001;
+    [SerializeField] private float tiempoEsperaVictoria = 3.0f; // Segundos de espera al ganar
 
     // Elementos de la UI
     private VisualElement fondoOscuro;
     private VisualElement p1Inicio, p2Contexto, p3Controles, p4Empezar, p5Derrota, p6Victoria;
 
     // Botones
-    private Button btnIniciar, btnOkContexto, btnOkControles, btnEmpezar;
+    private Button btnIniciar, btnOkContexto, btnOkControles, btnEmpezar, btnMenu, btnReplay;
 
     void OnEnable()
     {
@@ -37,6 +38,8 @@ public class ControladorUI : MonoBehaviour
         btnOkContexto = root.Q<Button>("Boton_OK_p2");
         btnOkControles = root.Q<Button>("Boton_OK_p3");
         btnEmpezar = root.Q<Button>("Boton_Empezar_p4");
+        btnMenu = root.Q<Button>("Boton_Menu_p6");
+        btnReplay = root.Q<Button>("Boton_Replay_p6");
 
         // Asignar clics
         if (btnIniciar != null) btnIniciar.clicked += () => CambiarPantalla(p1Inicio, p2Contexto);
@@ -44,12 +47,14 @@ public class ControladorUI : MonoBehaviour
         if (btnOkControles != null) btnOkControles.clicked += () => CambiarPantalla(p3Controles, p4Empezar);
         if (btnEmpezar != null) btnEmpezar.clicked += IniciarSimulacion;
 
-        // Al arrancar, nos aseguramos de que solo la cámara del menú esté viendo
-        if (camaraJugador != null) camaraJugador.SetActive(false);
-        if (camaraMenu != null) camaraMenu.SetActive(true);
+        // Al volver al menú, reseteamos el estado visual general antes de mostrar P1
+        if (btnMenu != null) btnMenu.clicked += VolverAlMenuPrincipal;
 
-        // Al arrancar el menú, pausamos al jugador
-        PausarJugador(true);
+        // Replay inicia directo la simulación salteándose la intro
+        if (btnReplay != null) btnReplay.clicked += IniciarSimulacion;
+
+        // Configuración inicial del arranque
+        PrepararEntornoMenu();
     }
 
     private void CambiarPantalla(VisualElement actual, VisualElement siguiente)
@@ -58,9 +63,41 @@ public class ControladorUI : MonoBehaviour
         if (siguiente != null) siguiente.style.display = DisplayStyle.Flex;
     }
 
+    private void PreparaVisualesMenus()
+    {
+        // Limpiamos pantallas para que no se superpongan
+        if (p1Inicio != null) p1Inicio.style.display = DisplayStyle.None;
+        if (p2Contexto != null) p2Contexto.style.display = DisplayStyle.None;
+        if (p3Controles != null) p3Controles.style.display = DisplayStyle.None;
+        if (p4Empezar != null) p4Empezar.style.display = DisplayStyle.None;
+        if (p5Derrota != null) p5Derrota.style.display = DisplayStyle.None;
+        if (p6Victoria != null) p6Victoria.style.display = DisplayStyle.None;
+    }
+
+    private void PrepararEntornoMenu()
+    {
+        //if (globalVolumeBlur != null) globalVolumeBlur.SetActive(false);
+        if (fondoOscuro != null) fondoOscuro.style.display = DisplayStyle.Flex;
+
+        if (camaraJugador != null) camaraJugador.SetActive(false);
+        if (camaraMenu != null) camaraMenu.SetActive(true);
+
+        PausarJugador(true);
+    }
+
+    private void VolverAlMenuPrincipal()
+    {
+        PrepararEntornoMenu();
+        PreparaVisualesMenus();
+        if (p1Inicio != null) p1Inicio.style.display = DisplayStyle.Flex;
+    }
+
     private void IniciarSimulacion()
     {
+        // Apagamos desenfoques y fondos de interfaz
+        //if (globalVolumeBlur != null) globalVolumeBlur.SetActive(false);
         if (fondoOscuro != null) fondoOscuro.style.display = DisplayStyle.None;
+        PreparaVisualesMenus();
 
         // Hacemos el cambiazo de cámaras manual y obligado
         if (camaraMenu != null) camaraMenu.SetActive(false);
@@ -85,9 +122,26 @@ public class ControladorUI : MonoBehaviour
         UnityEngine.Cursor.visible = pausar;
     }
 
+    // --- MÉTODOS DE FIN DE PARTIDA ---
+
+    // Comentado temporalmente por falta de dinámica de derrota
     public void MostrarPantallaDerrota()
     {
-        ActivarMenuFinal(p5Derrota);
+        // ActivarMenuFinal(p5Derrota);
+    }
+
+    // Este es el método que llamarán tus compañeras cuando el contador llegue a 0
+    public void OnContadorLlamasCero()
+    {
+        Debug.Log($"¡Fuego extinguido! Esperando {tiempoEsperaVictoria} segundos antes de la victoria...");
+        StartCoroutine(EsperarYMostrarVictoria());
+    }
+
+    private IEnumerator EsperarYMostrarVictoria()
+    {
+        // Espera el tiempo configurado en los campos de Unity
+        yield return new WaitForSeconds(tiempoEsperaVictoria);
+        MostrarPantallaVictoria();
     }
 
     public void MostrarPantallaVictoria()
@@ -97,15 +151,10 @@ public class ControladorUI : MonoBehaviour
 
     private void ActivarMenuFinal(VisualElement pantallaFinal)
     {
-        if (globalVolumeBlur != null) globalVolumeBlur.SetActive(true);
+        //if (globalVolumeBlur != null) globalVolumeBlur.SetActive(true);
         if (fondoOscuro != null) fondoOscuro.style.display = DisplayStyle.Flex;
 
-        if (p1Inicio != null) p1Inicio.style.display = DisplayStyle.None;
-        if (p2Contexto != null) p2Contexto.style.display = DisplayStyle.None;
-        if (p3Controles != null) p3Controles.style.display = DisplayStyle.None;
-        if (p4Empezar != null) p4Empezar.style.display = DisplayStyle.None;
-        if (p5Derrota != null) p5Derrota.style.display = DisplayStyle.None;
-        if (p6Victoria != null) p6Victoria.style.display = DisplayStyle.None;
+        PreparaVisualesMenus();
 
         if (pantallaFinal != null) pantallaFinal.style.display = DisplayStyle.Flex;
         PausarJugador(true);
