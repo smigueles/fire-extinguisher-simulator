@@ -79,6 +79,7 @@
     <None Include="Assets\N2Studio\Shaders\Nova\Runtime\Core\Shaders\ParticlesUberDepthNormalsCore.hlsl" />
     <None Include="Assets\N2Studio\Shaders\Nova\Runtime\Core\Shaders\ParticlesUberDepthNormals.hlsl" />
     <None Include="Assets\N2Studio\Shaders\Nova\Runtime\Core\Shaders\ParticlesUber.hlsl" />
+    <None Include="Assets\QA_Books\Readme.txt" />
     <None Include="Assets\N2Studio\Third-Party Notices.txt" />
     <None Include="Assets\N2Studio\Shaders\Nova\Runtime\Core\Shaders\ParticlesUberDepthOnly.hlsl" />
     <None Include="Assets\N2Studio\Shaders\Nova\Runtime\Core\Shaders\Particles.hlsl" />
