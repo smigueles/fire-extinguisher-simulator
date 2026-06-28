@@ -8,6 +8,7 @@ public class UIController : MonoBehaviour
     [Header("Scene Setup")]
     [SerializeField] private PlayerMovement scriptPlayerMovement;
     [SerializeField] private MouseLook scriptMouseLook;
+    [SerializeField] private PlayerInteraction scriptPlayerInteraction;
     [SerializeField] private GameObject menuCamera;
     [SerializeField] private GameObject playerCamera;
     [SerializeField] private GameObject fire001;
@@ -158,6 +159,7 @@ public class UIController : MonoBehaviour
     {
         if (scriptPlayerMovement != null) scriptPlayerMovement.enabled = !pause;
         if (scriptMouseLook != null) scriptMouseLook.enabled = !pause;
+        if (scriptPlayerInteraction != null) scriptPlayerInteraction.enabled = !pause;
 
         UnityEngine.Cursor.lockState = pause ? CursorLockMode.None : CursorLockMode.Locked;
         UnityEngine.Cursor.visible = pause;

@@ -4,6 +4,7 @@ public class PlayerInteraction : MonoBehaviour
 {
     public float interactDistance = 7f;
     public Transform holdPoint;
+    public Camera playerCamera;
 
     void Update()
     {
