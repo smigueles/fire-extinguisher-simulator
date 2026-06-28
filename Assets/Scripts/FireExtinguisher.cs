@@ -2,49 +2,56 @@ using UnityEngine;
 
 public class FireExtinguisher : MonoBehaviour
 {
-    public ParticleSystem extinguisherParticles;
-    public Transform nozzlePoint;
+    [Header("Extinguisher Components")]
+    [SerializeField] private ParticleSystem extinguisherParticles;
+    [SerializeField] private Transform nozzlePoint;
 
-    public float extinguishDistance = 10f;
-    public float extinguishPower = 20f;
+    [Header("Extinguisher Settings")]
+    [SerializeField] private float extinguishDistance = 10f;
+    [SerializeField] private float extinguishPower = 20f;
 
     void Update()
     {
+        // Handle particle system feedback based on input
         if (Input.GetMouseButtonDown(0))
         {
-            extinguisherParticles.Play();
+            if (extinguisherParticles != null) extinguisherParticles.Play();
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            extinguisherParticles.Stop();
+            if (extinguisherParticles != null) extinguisherParticles.Stop();
         }
 
+        // Handle physical raycast logic while holding down the button
         if (Input.GetMouseButton(0))
         {
-            RaycastHit hit;
+            Camera mainCam = Camera.main;
 
-            if (Physics.Raycast(
-                nozzlePoint.position,
-                nozzlePoint.forward,
-                out hit,
-                extinguishDistance))
+            if (mainCam != null)
             {
-                Debug.DrawRay(
-                    nozzlePoint.position,
-                    nozzlePoint.forward * extinguishDistance,
-                    Color.green
-                );
+                // DIBUJA LA LÍNEA: Nace en la manguera, pero viaja hacia donde mira la cámara
+                Debug.DrawRay(nozzlePoint.position, mainCam.transform.forward * extinguishDistance, Color.red);
 
-                FireController fire =
-                    hit.collider.GetComponent<FireController>();
+                RaycastHit hit;
 
-                if (fire != null)
+                // CORRECCIÓN DEFINITIVA: El rayo usa la posición del nozzlePoint pero la dirección de la cámara
+                if (Physics.Raycast(nozzlePoint.position, mainCam.transform.forward, out hit, extinguishDistance))
                 {
-                    Debug.Log("Se activa el extintor");
-                    fire.Extinguish(
-                        extinguishPower * Time.deltaTime
-                    );
+                    Debug.Log("Raycast hitting: " + hit.collider.gameObject.name);
+
+                    // Look for the FireController component in the object or its parents
+                    FireController fire = hit.collider.GetComponent<FireController>();
+                    if (fire == null)
+                    {
+                        fire = hit.collider.GetComponentInParent<FireController>();
+                    }
+
+                    if (fire != null)
+                    {
+                        // Apply extinguishing damage per second over time
+                        fire.Extinguish(extinguishPower * Time.deltaTime);
+                    }
                 }
             }
         }
