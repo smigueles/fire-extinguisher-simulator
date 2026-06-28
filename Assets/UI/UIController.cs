@@ -12,7 +12,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject menuCamera;
     [SerializeField] private GameObject playerCamera;
     [SerializeField] private GameObject fire001;
-    [SerializeField] private float victoryWaitTime = 2.5f;
+    [SerializeField] private float victoryWaitTime = 2f;
 
     // UI Elements
     private VisualElement uiBackground;

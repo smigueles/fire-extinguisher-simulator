@@ -859,7 +859,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -948,7 +948,7 @@ Transform:
   m_GameObject: {fileID: 692867835}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.83, y: -2.82, z: -28.39}
+  m_LocalPosition: {x: 8.8, y: -2.95, z: -28.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1752,6 +1752,7 @@ GameObject:
   - component: {fileID: 1769861509}
   - component: {fileID: 1769861512}
   - component: {fileID: 1769861513}
+  - component: {fileID: 1769861514}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1814,9 +1815,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   gravity: -9.81
-  footstepAudioSource: {fileID: 0}
-  footstepClips: []
-  stepInterval: 0.5
+  footstepAudioSource: {fileID: 1769861514}
+  footstepClips:
+  - {fileID: 8300000, guid: ce9f205e7df440544a17845da959555d, type: 3}
+  - {fileID: 8300000, guid: 8b3652c64b15eff409d6814888eb5fab, type: 3}
+  - {fileID: 8300000, guid: c4a79cb480543584bb574c042f0d7aa7, type: 3}
+  - {fileID: 8300000, guid: 3cc041e1dabdaec45ac2b0a11eb3f084, type: 3}
+  - {fileID: 8300000, guid: fa6e92c9bb6d91a468c7cc26a8b425aa, type: 3}
+  stepInterval: 0.55
 --- !u!114 &1769861513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1831,6 +1837,104 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactDistance: 5
   holdPoint: {fileID: 648288691}
+  playerCamera: {fileID: 0}
+--- !u!82 &1769861514
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769861508}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.3
+  m_Pitch: 0.5
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1770950046 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5088309380072154955, guid: fde6668629182ff4fb50367fddfce6f0, type: 3}
@@ -1941,10 +2045,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scriptPlayerMovement: {fileID: 1769861512}
   scriptMouseLook: {fileID: 556617351}
+  scriptPlayerInteraction: {fileID: 0}
   menuCamera: {fileID: 692867835}
   playerCamera: {fileID: 556617346}
   fire001: {fileID: 1573861812}
-  victoryWaitTime: 2.5
+  victoryWaitTime: 2
 --- !u!114 &1899898265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2112,6 +2217,10 @@ PrefabInstance:
     - target: {fileID: -4169232768497952730, guid: fde6668629182ff4fb50367fddfce6f0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 181.462
+      objectReference: {fileID: 0}
+    - target: {fileID: -2965475624145166871, guid: fde6668629182ff4fb50367fddfce6f0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -447275898630060098, guid: fde6668629182ff4fb50367fddfce6f0, type: 3}
       propertyPath: m_LocalPosition.y
