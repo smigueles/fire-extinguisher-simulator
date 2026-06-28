@@ -10,37 +10,55 @@ public class FireExtinguisher : MonoBehaviour
     [SerializeField] private float extinguishDistance = 10f;
     [SerializeField] private float extinguishPower = 20f;
 
+    [Header("Audio Setup")]
+    [SerializeField] private AudioSource extinguisherAudioSource;
+
+    void OnDisable()
+    {
+        if (extinguisherParticles != null) extinguisherParticles.Stop();
+
+        if (extinguisherAudioSource != null && extinguisherAudioSource.isPlaying)
+        {
+            extinguisherAudioSource.Stop();
+        }
+    }
+
     void Update()
     {
-        // Handle particle system feedback based on input
         if (Input.GetMouseButtonDown(0))
         {
             if (extinguisherParticles != null) extinguisherParticles.Play();
+
+            if (extinguisherAudioSource != null && !extinguisherAudioSource.isPlaying)
+            {
+                extinguisherAudioSource.Play();
+            }
         }
 
         if (Input.GetMouseButtonUp(0))
         {
             if (extinguisherParticles != null) extinguisherParticles.Stop();
+
+            if (extinguisherAudioSource != null && extinguisherAudioSource.isPlaying)
+            {
+                extinguisherAudioSource.Stop();
+            }
         }
 
-        // Handle physical raycast logic while holding down the button
         if (Input.GetMouseButton(0))
         {
             Camera mainCam = Camera.main;
 
             if (mainCam != null)
             {
-                // DIBUJA LA LÍNEA: Nace en la manguera, pero viaja hacia donde mira la cámara
                 Debug.DrawRay(nozzlePoint.position, mainCam.transform.forward * extinguishDistance, Color.red);
 
                 RaycastHit hit;
 
-                // CORRECCIÓN DEFINITIVA: El rayo usa la posición del nozzlePoint pero la dirección de la cámara
                 if (Physics.Raycast(nozzlePoint.position, mainCam.transform.forward, out hit, extinguishDistance))
                 {
                     Debug.Log("Raycast hitting: " + hit.collider.gameObject.name);
 
-                    // Look for the FireController component in the object or its parents
                     FireController fire = hit.collider.GetComponent<FireController>();
                     if (fire == null)
                     {
@@ -49,7 +67,6 @@ public class FireExtinguisher : MonoBehaviour
 
                     if (fire != null)
                     {
-                        // Apply extinguishing damage per second over time
                         fire.Extinguish(extinguishPower * Time.deltaTime);
                     }
                 }
