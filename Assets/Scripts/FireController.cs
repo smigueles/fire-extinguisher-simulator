@@ -5,41 +5,40 @@ public class FireController : MonoBehaviour
     [Header("Fire Settings")]
     public float fireHealth = 100f;
 
+    [Header("Audio Setup")]
+    [SerializeField] private AudioSource fireAudioSource;
+
     private ParticleSystem[] fireParticleSystems;
 
     void Awake()
     {
-        // Cache all particle systems in children components
         fireParticleSystems = GetComponentsInChildren<ParticleSystem>();
 
-        StopFireParticles();
-    }
+        if (fireAudioSource == null)
+        {
+            fireAudioSource = GetComponent<AudioSource>();
+        }
 
-    //void Start()
-    //{
-        // Ensure particles start stopped if the object is enabled by default
-       // StopFireParticles();
-    //}
+        StopFireParticles();
+        StopFireAudio();
+    }
 
     public void Extinguish(float amount)
     {
-        // If fire is already extinguished, exit immediately
-        // This prevents the health counter from dropping infinitely and saturating the UI
         if (fireHealth <= 0) return;
 
-        // Subtracts fire health
         fireHealth -= amount;
-        Debug.Log("Current Fire Health: " + fireHealth);
+        Debug.Log($"Current Fire Health: {fireHealth}");
 
-        // Checks if the fire was destroyed in this frame
         if (fireHealth <= 0)
         {
-            fireHealth = 0; // Forces clamp to exact zero
+            fireHealth = 0;
 
-            Debug.Log("Fire reached 0. Extinguishing particles...");
+            Debug.Log("Fire reached 0. Extinguishing particles and audio...");
             StopFireParticles();
+            StopFireAudio();
 
-            // NOTIFY UI: Look for the UIController to trigger the victory sequence once
+            // Notifies UI for end of simulation
             UIController uiController = Object.FindFirstObjectByType<UIController>();
             if (uiController != null)
             {
@@ -47,37 +46,50 @@ public class FireController : MonoBehaviour
             }
             else
             {
-                Debug.LogError("UIController object not found in the hierarchy. Cannot trigger victory sequence!");
+                Debug.LogError("UIController not found in the hierarchy!");
             }
         }
     }
 
     public void ResetFire()
     {
-        fireHealth = 100f; // Resets health back to initial state
+        fireHealth = 100f;
         PlayFireParticles();
-        Debug.Log("Fire has been reset to " + fireHealth + " for a new game session.");
+        PlayFireAudio();
+        Debug.Log($"Fire has been reset to {fireHealth} for a new game session.");
     }
 
     private void StopFireParticles()
     {
-        if (fireParticleSystems != null)
+        if (fireParticleSystems == null) return;
+        foreach (ParticleSystem ps in fireParticleSystems)
         {
-            foreach (ParticleSystem ps in fireParticleSystems)
-            {
-                ps.Stop();
-            }
+            ps.Stop();
         }
     }
 
     private void PlayFireParticles()
     {
-        if (fireParticleSystems != null)
+        if (fireParticleSystems == null) return;
+        foreach (ParticleSystem ps in fireParticleSystems)
         {
-            foreach (ParticleSystem ps in fireParticleSystems)
-            {
-                ps.Play();
-            }
+            ps.Play();
+        }
+    }
+
+    private void PlayFireAudio()
+    {
+        if (fireAudioSource != null && !fireAudioSource.isPlaying)
+        {
+            fireAudioSource.Play();
+        }
+    }
+
+    private void StopFireAudio()
+    {
+        if (fireAudioSource != null && fireAudioSource.isPlaying)
+        {
+            fireAudioSource.Stop();
         }
     }
 }
