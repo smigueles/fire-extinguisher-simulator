@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Assets\UI\UIController.cs" />
     <Compile Include="Assets\Scripts\MouseLook.cs" />
+    <Compile Include="Assets\Scripts\CrosshairController.cs" />
     <Compile Include="Assets\N2Studio\Shaders\Nova\Runtime\Core\Scripts\ApplyDistortionPass.cs" />
     <Compile Include="Assets\N2Studio\Shaders\Nova\Runtime\Core\Scripts\ScreenSpaceDistortion.cs" />
     <Compile Include="Assets\N2Studio\Shaders\Nova\Runtime\Core\Scripts\ApplyDistortionPass_RenderGraph.cs" />
@@ -80,6 +81,7 @@
     <None Include="Assets\N2Studio\Shaders\Nova\Runtime\Core\Shaders\ParticlesUberShadowCaster.hlsl" />
     <None Include="Assets\N2Studio\Shaders\Nova\Runtime\Core\Shaders\ParticlesInstancing.hlsl" />
     <None Include="Assets\N2Studio\Shaders\Nova\Runtime\Core\Shaders\ParticlesUberUnlit.hlsl" />
+    <None Include="Assets\startButton.uss" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

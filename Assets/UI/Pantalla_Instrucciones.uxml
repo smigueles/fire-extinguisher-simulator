@@ -29,4 +29,5 @@
             <ui:Button text="Volver a jugar" name="ReplayBtnVictoryScreen" enable-rich-text="true" class="hover" style="padding-top: 10px; margin-top: 2px; position: relative; top: 230px; background-color: rgba(0, 0, 0, 0.1); width: 150px; color: rgb(12, 12, 12); left: auto; right: auto; justify-content: center; align-items: center; align-self: center; align-content: auto; height: 42px; font-size: 16px; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; letter-spacing: 6px;" />
         </ui:VisualElement>
     </ui:VisualElement>
+    <ui:VisualElement name="crosshair" style="position: absolute; left: 50%; top: 50%; width: 12px; height: 12px; margin-left: -6px; margin-top: -6px; border-top-left-radius: 50%; border-top-right-radius: 50%; border-bottom-left-radius: 50%; border-bottom-right-radius: 50%; background-color: rgba(255, 255, 255, 0.8); display: none;" />
 </ui:UXML>

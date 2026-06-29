@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class FireExtinguisher : MonoBehaviour
 {
@@ -10,50 +11,102 @@ public class FireExtinguisher : MonoBehaviour
     [SerializeField] private float extinguishDistance = 10f;
     [SerializeField] private float extinguishPower = 20f;
 
+    [Header("Tank Settings")]
+    [SerializeField] private float maxCapacity = 100f;
+    [SerializeField] private float currentCapacity = 100f;
+    [SerializeField] private float consumptionRate = 10f; // unidades por segundo de uso
+
+    private Camera mainCam;
+    private bool isFiring = false;
+
+    public float CurrentCapacity => currentCapacity;
+    public float MaxCapacity => maxCapacity;
+    public bool IsEmpty => currentCapacity <= 0f;
+    public UnityEvent OnTankEmpty;
+
+    private bool emptyEventFired = false;
+
+    void Start()
+    {
+        mainCam = Camera.main;
+        currentCapacity = maxCapacity;
+    }
+
     void Update()
     {
-        // Handle particle system feedback based on input
-        if (Input.GetMouseButtonDown(0))
+        if (mainCam == null)
         {
+            mainCam = Camera.main;
+            if (mainCam == null) return;
+        }
+
+        HandleFiringInput();
+
+        if (isFiring)
+        {
+            ConsumeTank();
+            PerformExtinguishRaycast();
+        }
+    }
+
+    private void HandleFiringInput()
+    {
+        if (Input.GetMouseButtonDown(0) && !IsEmpty)
+        {
+            isFiring = true;
             if (extinguisherParticles != null) extinguisherParticles.Play();
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) || (isFiring && IsEmpty))
         {
-            if (extinguisherParticles != null) extinguisherParticles.Stop();
+            StopFiring();
         }
+    }
 
-        // Handle physical raycast logic while holding down the button
-        if (Input.GetMouseButton(0))
+    private void StopFiring()
+    {
+        isFiring = false;
+        if (extinguisherParticles != null) extinguisherParticles.Stop();
+    }
+
+    private void PerformExtinguishRaycast()
+    {
+        if (nozzlePoint == null) return;
+
+        Vector3 origin = nozzlePoint.position;
+        Vector3 direction = mainCam.transform.forward;
+
+        Debug.DrawRay(origin, direction * extinguishDistance, Color.red);
+
+        if (Physics.Raycast(origin, direction, out RaycastHit hit, extinguishDistance))
         {
-            Camera mainCam = Camera.main;
-
-            if (mainCam != null)
+            FireController fire = hit.collider.GetComponent<FireController>();
+            if (fire == null)
             {
-                // DIBUJA LA LÍNEA: Nace en la manguera, pero viaja hacia donde mira la cámara
-                Debug.DrawRay(nozzlePoint.position, mainCam.transform.forward * extinguishDistance, Color.red);
+                fire = hit.collider.GetComponentInParent<FireController>();
+            }
 
-                RaycastHit hit;
-
-                // CORRECCIÓN DEFINITIVA: El rayo usa la posición del nozzlePoint pero la dirección de la cámara
-                if (Physics.Raycast(nozzlePoint.position, mainCam.transform.forward, out hit, extinguishDistance))
-                {
-                    Debug.Log("Raycast hitting: " + hit.collider.gameObject.name);
-
-                    // Look for the FireController component in the object or its parents
-                    FireController fire = hit.collider.GetComponent<FireController>();
-                    if (fire == null)
-                    {
-                        fire = hit.collider.GetComponentInParent<FireController>();
-                    }
-
-                    if (fire != null)
-                    {
-                        // Apply extinguishing damage per second over time
-                        fire.Extinguish(extinguishPower * Time.deltaTime);
-                    }
-                }
+            if (fire != null)
+            {
+                fire.Extinguish(extinguishPower * Time.deltaTime);
             }
         }
+    }
+
+    private void ConsumeTank()
+    {
+        currentCapacity -= consumptionRate * Time.deltaTime;
+        currentCapacity = Mathf.Clamp(currentCapacity, 0f, maxCapacity);
+
+        if (currentCapacity <= 0f && !emptyEventFired)
+        {
+            emptyEventFired = true;
+            OnTankEmpty?.Invoke();
+        }
+    }
+
+    public void Refill()
+    {
+        currentCapacity = maxCapacity;
     }
 }

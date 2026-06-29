@@ -9,6 +9,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private PlayerMovement scriptPlayerMovement;
     [SerializeField] private MouseLook scriptMouseLook;
     [SerializeField] private PlayerInteraction scriptPlayerInteraction;
+    [SerializeField] private CrosshairController crosshairController;
     [SerializeField] private GameObject menuCamera;
     [SerializeField] private GameObject playerCamera;
     [SerializeField] private GameObject fire001;
@@ -51,7 +52,8 @@ public class UIController : MonoBehaviour
         // Menu Button (Normal reload back to start)
         if (btnMenu != null)
         {
-            btnMenu.clicked += () => {
+            btnMenu.clicked += () =>
+            {
                 UnityEngine.Cursor.lockState = CursorLockMode.None;
                 UnityEngine.Cursor.visible = true;
 
@@ -66,7 +68,8 @@ public class UIController : MonoBehaviour
         // Replay Button (Smart reload bypassing menus)
         if (btnReplay != null)
         {
-            btnReplay.clicked += () => {
+            btnReplay.clicked += () =>
+            {
                 UnityEngine.Cursor.lockState = CursorLockMode.None;
                 UnityEngine.Cursor.visible = true;
 
@@ -116,6 +119,7 @@ public class UIController : MonoBehaviour
 
         if (playerCamera != null) playerCamera.SetActive(false);
         if (menuCamera != null) menuCamera.SetActive(true);
+        if (crosshairController != null) crosshairController.SetVisible(false);
 
         PausePlayer(true);
     }
@@ -134,6 +138,8 @@ public class UIController : MonoBehaviour
 
         if (menuCamera != null) menuCamera.SetActive(false);
         if (playerCamera != null) playerCamera.SetActive(true);
+
+        if (crosshairController != null) crosshairController.SetVisible(true);
 
         if (fire001 != null)
         {
