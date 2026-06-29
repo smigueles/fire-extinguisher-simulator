@@ -44,6 +44,7 @@ public class CrosshairController : MonoBehaviour
 
     public void SetVisible(bool visible)
     {
+        Debug.Log("Start corsshair");
         if (crosshair == null && uiDocument != null)
         {
             crosshair = uiDocument.rootVisualElement.Q<VisualElement>("crosshair");

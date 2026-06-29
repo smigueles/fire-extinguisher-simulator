@@ -2258,6 +2258,7 @@ GameObject:
   - component: {fileID: 1899898266}
   - component: {fileID: 1899898265}
   - component: {fileID: 1899898264}
+  - component: {fileID: 1899898267}
   m_Layer: 0
   m_Name: UI_Manager
   m_TagString: Untagged
@@ -2279,8 +2280,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scriptPlayerMovement: {fileID: 1769861512}
   scriptMouseLook: {fileID: 556617351}
-  scriptPlayerInteraction: {fileID: 0}
-  crosshairController: {fileID: 0}
+  scriptPlayerInteraction: {fileID: 1769861513}
+  crosshairController: {fileID: 1899898267}
   scriptFireExtinguisher: {fileID: 1137046532}
   menuCamera: {fileID: 692867835}
   playerCamera: {fileID: 556617346}
@@ -2320,6 +2321,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1899898267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1899898263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81f12e0cda6e8d04dbf738af1c41e60e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiDocument: {fileID: 1899898265}
+  detectDistance: 15
+  normalColor: {r: 1, g: 1, b: 1, a: 0.8}
+  fireDetectedColor: {r: 1, g: 0.3, b: 0, a: 0.9}
 --- !u!1 &1909898588 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5630266714638942145, guid: fde6668629182ff4fb50367fddfce6f0, type: 3}
@@ -2567,7 +2584,7 @@ Transform:
   m_GameObject: {fileID: 1960104556}
   serializedVersion: 2
   m_LocalRotation: {x: -0.70710677, y: -0.00012353687, z: -0.70710677, w: 0.00012353687}
-  m_LocalPosition: {x: -2.7, y: 5.7, z: -2.3}
+  m_LocalPosition: {x: -2.7, y: 5.7, z: -6.6}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2597,7 +2614,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e823cd5b5d27c0f4b8256e7c12ee3e6d, type: 2}
+  - {fileID: 2100000, guid: df0a9d4a1d2f26c4eb697a71ac5b82d6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3227,8 +3244,8 @@ ParticleSystem:
     rotation3D: 0
     gravityModifier:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0
+      minMaxState: 3
+      scalar: -0.05
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -3282,7 +3299,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 25
+    angle: 10
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -3368,7 +3385,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1
+      value: 0.05
       mode: 0
       spread: 0
       speed:
@@ -3487,7 +3504,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 150
       minScalar: 10
       maxCurve:
         serializedVersion: 2
