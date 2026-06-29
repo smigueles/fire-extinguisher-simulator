@@ -22,7 +22,7 @@ public class UIController : MonoBehaviour
     private VisualElement pStart, pContext, pFireType, pControllers, pPlay, pDefeat, pVictory;
 
     // Buttons
-    private Button btnStart, btnContext, btnFireType, btnControllers, btnPlay, btnMenu, btnReplay;
+    private Button btnStart, btnContext, btnFireType, btnControllers, btnPlay, btnMenu, btnReplay, btnReplayDefeat, btnInicioDefeat;
 
     void OnEnable()
     {
@@ -44,6 +44,8 @@ public class UIController : MonoBehaviour
         btnPlay = root.Q<Button>("OKBtnStartScreen");
         btnMenu = root.Q<Button>("MenuBtnVictoryScreen");
         btnReplay = root.Q<Button>("ReplayBtnVictoryScreen");
+        btnReplayDefeat = root.Q<Button>("Replay");
+        btnInicioDefeat = root.Q<Button>("Inicio");
 
         if (btnStart != null) btnStart.clicked += () => SwitchScreens(pStart, pContext);
         if (btnContext != null) btnContext.clicked += () => SwitchScreens(pContext, pFireType);
@@ -71,6 +73,34 @@ public class UIController : MonoBehaviour
                 UnityEngine.Cursor.visible = true;
                 PlayerPrefs.SetInt("SkipMenuOnReload", 1);
                 PlayerPrefs.Save();
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            };
+        }
+
+        if (btnReplayDefeat != null)
+        {
+            btnReplayDefeat.clicked += () =>
+            {
+                UnityEngine.Cursor.lockState = CursorLockMode.None;
+                UnityEngine.Cursor.visible = true;
+
+                PlayerPrefs.SetInt("SkipMenuOnReload", 1);
+                PlayerPrefs.Save();
+
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            };
+        }
+
+        if (btnInicioDefeat != null)
+        {
+            btnInicioDefeat.clicked += () =>
+            {
+                UnityEngine.Cursor.lockState = CursorLockMode.None;
+                UnityEngine.Cursor.visible = true;
+
+                PlayerPrefs.SetInt("SkipMenuOnReload", 0);
+                PlayerPrefs.Save();
+
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             };
         }
@@ -171,6 +201,41 @@ public class UIController : MonoBehaviour
         if (uiBackground != null) uiBackground.style.display = DisplayStyle.Flex;
         PrepareMenuVisuals();
         if (pVictory != null) pVictory.style.display = DisplayStyle.Flex;
+        if (crosshairController != null) crosshairController.SetVisible(false);
         PausePlayer(true);
     }
+
+    public void OnExtinguisherEmpty()
+    {
+        if (fire001 == null) return;
+
+        FireController fireController = fire001.GetComponent<FireController>();
+        if (fireController == null)
+        {
+            fireController = fire001.GetComponentInChildren<FireController>();
+        }
+
+        bool fireStillActive = fireController != null && fireController.fireHealth > 0f;
+
+        if (fireStillActive)
+        {
+            ShowDefeatScreen();
+        }
+    }
+
+    private void ShowDefeatScreen()
+    {
+        if (uiBackground != null) uiBackground.style.display = DisplayStyle.Flex;
+        PrepareMenuVisuals();
+
+        if (pDefeat != null) pDefeat.style.display = DisplayStyle.Flex;
+
+        if (playerCamera != null) playerCamera.SetActive(false);
+        if (menuCamera != null) menuCamera.SetActive(true);
+
+        PausePlayer(true);
+        if (crosshairController != null) crosshairController.SetVisible(false);
+    }
+
+
 }

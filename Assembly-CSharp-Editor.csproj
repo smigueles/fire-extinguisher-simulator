@@ -66,6 +66,7 @@
     <Compile Include="Assets\N2Studio\Shaders\Nova\Editor\Core\Scripts\TransparentBlendMode.cs" />
     <Compile Include="Assets\N2Studio\Shaders\Nova\Editor\Core\Scripts\EmissionMapMode.cs" />
     <Compile Include="Assets\N2Studio\Shaders\Nova\Editor\Core\Scripts\ParallaxMapDefinition.cs" />
+    <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Ramps\Editor\RampAssetEditor.cs" />
     <Compile Include="Assets\N2Studio\Shaders\Nova\Editor\Core\Scripts\AlphaTransitionBlendMode.cs" />
     <Compile Include="Assets\N2Studio\Shaders\Nova\Editor\Core\Scripts\ColorChannels.cs" />
     <Compile Include="Assets\N2Studio\Shaders\Nova\Editor\Core\Scripts\EmissionAreaType.cs" />

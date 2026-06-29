@@ -53,8 +53,14 @@
     <Compile Include="Assets\Scripts\MouseLook.cs" />
     <Compile Include="Assets\Scripts\CrosshairController.cs" />
     <Compile Include="Assets\N2Studio\Shaders\Nova\Runtime\Core\Scripts\ApplyDistortionPass.cs" />
+    <Compile Include="Assets\UnityTechnologies\ParticlePack\EffectExamples\Misc Effects\Scripts\SpawnEffect.cs" />
     <Compile Include="Assets\N2Studio\Shaders\Nova\Runtime\Core\Scripts\ScreenSpaceDistortion.cs" />
     <Compile Include="Assets\N2Studio\Shaders\Nova\Runtime\Core\Scripts\ApplyDistortionPass_RenderGraph.cs" />
+    <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Scripts\ProximityActivate.cs" />
+    <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Ramps\Runtime\RampAsset.cs" />
+    <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Scripts\AdjustTimeScale.cs" />
+    <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Scripts\SimpleCameraController.cs" />
+    <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Scripts\SimpleCharacterMotor.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\N2Studio\Shaders\Nova\Runtime\Core\Scripts\DistortionContextItem_RenderGraph.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
@@ -66,22 +72,48 @@
     <Compile Include="Assets\N2Studio\Shaders\Nova\Runtime\Core\Scripts\DistortedUvBufferPass.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\UnityTechnologies\ParticlePack\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\N2Studio\Shaders\Nova\Runtime\Core\Shaders\ParticlesUberDepthNormalsCore.hlsl" />
+    <None Include="Assets\UnityTechnologies\ParticlePack\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\UnityTechnologies\ParticlePack\TextMesh Pro\Shaders\TMP_SDF-Mobile-2-Pass.shader" />
     <None Include="Assets\N2Studio\Shaders\Nova\Runtime\Core\Shaders\ParticlesUberDepthNormals.hlsl" />
+    <None Include="Assets\UnityTechnologies\ParticlePack\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\UI\Estilos_Interfaz.uss" />
     <None Include="Assets\N2Studio\Shaders\Nova\Runtime\Core\Shaders\ParticlesUber.hlsl" />
+    <None Include="Assets\UnityTechnologies\ParticlePack\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
+    <None Include="Assets\UnityTechnologies\ParticlePack\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
+    <None Include="Assets\UnityTechnologies\ParticlePack\EffectExamples\Misc Effects\Prefabs\Readme_Dissolve_Respawn_.txt" />
     <None Include="Assets\QA_Books\Readme.txt" />
     <None Include="Assets\N2Studio\Third-Party Notices.txt" />
     <None Include="Assets\N2Studio\Shaders\Nova\Runtime\Core\Shaders\ParticlesUberDepthOnly.hlsl" />
+    <None Include="Assets\UnityTechnologies\ParticlePack\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\N2Studio\Shaders\Nova\Runtime\Core\Shaders\Particles.hlsl" />
+    <None Include="Assets\UnityTechnologies\ParticlePack\TextMesh Pro\Shaders\SDFFunctions.hlsl" />
+    <None Include="Assets\UnityTechnologies\ParticlePack\EffectExamples\Magic Effects\Shaders\Ice.shader" />
     <None Include="Assets\UI\Pantalla_Instrucciones.uxml" />
+    <None Include="Assets\UnityTechnologies\ParticlePack\EffectExamples\Misc Effects\Shaders\Respawn.shader" />
+    <None Include="Assets\UnityTechnologies\ParticlePack\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\N2Studio\Shaders\Nova\Runtime\Core\Shaders\ParticlesUberUnlitEditor.hlsl" />
+    <None Include="Assets\UnityTechnologies\ParticlePack\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
+    <None Include="Assets\UnityTechnologies\ParticlePack\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+    <None Include="Assets\UnityTechnologies\ParticlePack\TextMesh Pro\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\UnityTechnologies\ParticlePack\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
+    <None Include="Assets\UnityTechnologies\ParticlePack\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\UnityTechnologies\ParticlePack\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\UnityTechnologies\ParticlePack\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\N2Studio\Shaders\Nova\Runtime\Core\Shaders\ParticlesUberUnlitForward.hlsl" />
+    <None Include="Assets\UnityTechnologies\ParticlePack\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\N2Studio\Shaders\Nova\Runtime\Core\Shaders\ParticlesUberUnlit.shader" />
     <None Include="Assets\N2Studio\Shaders\Nova\Runtime\Core\Shaders\ParticlesUberShadowCaster.hlsl" />
     <None Include="Assets\N2Studio\Shaders\Nova\Runtime\Core\Shaders\ParticlesInstancing.hlsl" />
+    <None Include="Assets\UnityTechnologies\ParticlePack\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\UnityTechnologies\ParticlePack\EffectExamples\Misc Effects\Shaders\FireFly.shader" />
+    <None Include="Assets\UnityTechnologies\ParticlePack\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\UnityTechnologies\ParticlePack\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\N2Studio\Shaders\Nova\Runtime\Core\Shaders\ParticlesUberUnlit.hlsl" />
-    <None Include="Assets\startButton.uss" />
+    <None Include="Assets\UnityTechnologies\ParticlePack\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+    <None Include="Assets\UnityTechnologies\ParticlePack\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\UnityTechnologies\ParticlePack\TextMesh Pro\Shaders\TMP_Sprite.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
