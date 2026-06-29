@@ -19,6 +19,9 @@ public class FireExtinguisher : MonoBehaviour
     [Header("Audio Setup")]
     [SerializeField] private AudioSource extinguisherAudioSource;
 
+    [Header("Safety Pin")]
+    [SerializeField] private bool pinRemoved = false;
+
     public UnityEvent OnTankEmpty;
 
     private Camera mainCam;
@@ -68,7 +71,13 @@ public class FireExtinguisher : MonoBehaviour
     {
         if (!isHeld) return;
 
-        if (Input.GetMouseButtonDown(0) && !IsEmpty)
+        if (Input.GetMouseButtonDown(1))
+        {
+            pinRemoved = true;
+            Debug.Log("Seguro retirado, listo para disparar.");
+        }
+
+        if (Input.GetMouseButtonDown(0) && !IsEmpty && pinRemoved)
         {
             isFiring = true;
             if (extinguisherParticles != null) extinguisherParticles.Play();
@@ -79,7 +88,8 @@ public class FireExtinguisher : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonUp(0) || (isFiring && IsEmpty))
+        //if (Input.GetMouseButtonUp(0) || (isFiring && IsEmpty))
+        if ((isFiring && IsEmpty))
         {
             StopFiring();
         }

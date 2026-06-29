@@ -1,32 +1,26 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Estilos_Interfaz.uss?fileID=7433441132597879392&amp;guid=23a8aa5692cbb15489683caa66366599&amp;type=3#Estilos_Interfaz" />
-
     <ui:VisualElement name="UIBackground">
         <ui:VisualElement name="menuScreen" class="screen screen-visible">
             <ui:Label text="Fire Extinguisher Simulator" name="simTitle" />
             <ui:Button text="INICIAR" name="startButton" enable-rich-text="true" class="hover btn-glass btn-glass--primary" />
         </ui:VisualElement>
-
         <ui:VisualElement name="contextScreen" class="screen">
             <ui:Label text="Un incendio puede suceder en cualquier momento y es mejor estar preparado. Presta atención al entorno y a todas las instrucciones que aparezcan para aprender a manejar una emergencia como esta. Este es un ambiente controlado, preparado para que aprendas con calma. Sin embargo, es nuestra idea que con esta experiencia tengas más herramientas para afrontar esta situacion en la realidad." name="introText" focusable="false" class="info-box" />
             <ui:Button text="OK" name="OKBtnContextScreen" class="btn-ok" />
         </ui:VisualElement>
-
         <ui:VisualElement name="fireTypeScreen" class="screen">
             <ui:Label text="El incendio que verás a continuación es de Clase C según el sistema Estadounidense (NFPA), es decir, involucra equipos eléctricos energizados. Para combatir esta categoría se utiliza un Extintor Triclase (ABC) de Polvo Químico Seco. Este agente no es conductor de electricidad y sofocará las llamas de manera segura." name="fireTypeText" focusable="false" class="info-box" />
             <ui:Button text="OK" name="OKBtnTypeScreen" class="btn-ok" />
         </ui:VisualElement>
-
         <ui:VisualElement name="controllersScreen" class="screen">
-            <ui:Label text="CONTROLES&#10;&#10;Mueve el ratón para controlar la camara.&#10;Navega por la escena con las teclas WASD.&#10;Acércate al extintor y presiona E para agarrarlo.&#10;Busca las llamas, apunta y mantén presionado click izquierdo para apagarlas." name="controllersText" focusable="false" class="info-box" />
+            <ui:Label text="CONTROLES&#10;&#10;Mueve el ratón para controlar la camara.&#10;Navega por la escena con las teclas WASD.&#10;Acércate al extintor y presiona E para agarrarlo.&#10;Presiona click derecho para quitar el precinto&#10;Busca las llamas, apunta y mantén presionado click izquierdo para apagarlas." name="controllersText" focusable="false" class="info-box" />
             <ui:Button text="OK" name="OKBtnControllersScreen" class="btn-ok" />
         </ui:VisualElement>
-
         <ui:VisualElement name="startScreen" class="screen">
             <ui:Label text="Es tu turno. &#10;&#10;Sigue las instrucciones, practica y vuelve a empezar.&#10;&#10;¡Buena suerte!" name="startText" focusable="false" class="info-box" />
             <ui:Button text="EMPEZAR" name="OKBtnStartScreen" class="btn-ok" />
         </ui:VisualElement>
-
         <ui:VisualElement name="Pantalla_5_Derrota" class="screen">
             <ui:Label text="Simulación fallida" name="Titulo_Derrota" class="screen-title screen-title--defeat" />
             <ui:Label text="El extintor se agotó antes de controlar el incendio.&#10;&#10;Recordá: mantené una distancia prudente, apuntá la boquilla a la base de las llamas (no a las llamas en altura) y aplicá el chorro con movimientos cortos en forma de barrido.&#10;&#10;Practicá de nuevo para ajustar la técnica." name="Texto_NoLogrado" focusable="false" class="info-box info-box--tall" />
@@ -35,13 +29,11 @@
                 <ui:Button text="Menú principal" name="Inicio" enable-rich-text="true" class="hover btn-glass btn-glass--primary" />
             </ui:VisualElement>
         </ui:VisualElement>
-
         <ui:VisualElement name="victoryScreen" class="screen">
             <ui:Label text="¡Bien hecho!" name="victoryText" class="screen-title screen-title--victory" />
             <ui:Button text="Menú" name="MenuBtnVictoryScreen" enable-rich-text="true" class="hover btn-glass btn-glass--secondary" />
             <ui:Button text="Volver a jugar" name="ReplayBtnVictoryScreen" enable-rich-text="true" class="hover btn-glass btn-glass--secondary" />
         </ui:VisualElement>
     </ui:VisualElement>
-
     <ui:VisualElement name="crosshair" />
 </ui:UXML>
