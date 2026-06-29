@@ -39,8 +39,6 @@ public class CrosshairController : MonoBehaviour
                 || hit.collider.GetComponentInParent<FireController>() != null);
 
 
-        Debug.Log("Lookin at fire: " + lookingAtFire);
-
         crosshair.style.backgroundColor = lookingAtFire ? fireDetectedColor : normalColor;
     }
 

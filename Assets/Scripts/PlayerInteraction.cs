@@ -25,6 +25,7 @@ public class PlayerInteraction : MonoBehaviour
                     extinguisher.transform.SetParent(holdPoint);
                     extinguisher.transform.localPosition = new Vector3(0.3f, -3.05f, 0.5f);
                     extinguisher.transform.localRotation = Quaternion.Euler(-90f, 90f, 180f);
+                    extinguisher.SetHeld(true);
                 }
             }
         }
